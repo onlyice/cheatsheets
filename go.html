@@ -33,8 +33,8 @@
 
 
 
-  <meta content='https://assets.devhints.io/previews/go.jpg?t=20201217214525' property='og:image'>
-  <meta content='https://assets.devhints.io/previews/go.jpg?t=20201217214525' property='twitter:image'>
+  <meta content='https://assets.devhints.io/previews/go.jpg?t=20201228083030' property='og:image'>
+  <meta content='https://assets.devhints.io/previews/go.jpg?t=20201228083030' property='twitter:image'>
   <meta content='900' property='og:image:width'>
   <meta content='471' property='og:image:height'>
 
@@ -103,11 +103,11 @@ gtag('config','UA-106902774-1');
 <!-- deferred css -->
 <script id='deferred-css'>;(function(links){(requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame||(function(fn){window.addEventListener('load',fn)}))(function(){var h=document.getElementsByTagName('head')[0],l,i;for (i=0;i<links.length;i++){l=document.createElement('link');l.rel='stylesheet';l.href=links[i];h.appendChild(l);}})})([
 'https://fonts.googleapis.com/css?family=Cousine',
-'./assets/2017/style.css?t=20201217214525'
+'./assets/2017/style.css?t=20201228083030'
 ])</script>
 <noscript id='deferred-css-fallback'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Cousine'>
-<link rel='stylesheet' href='./assets/2017/style.css?t=20201217214525'>
+<link rel='stylesheet' href='./assets/2017/style.css?t=20201228083030'>
 </noscript>
 
 <script type='application/ld+json'>
@@ -119,7 +119,7 @@ gtag('config','UA-106902774-1');
     "@id": "https://google.com/article"
   },
   "headline": "Go cheatsheet",
-  "image": [ "https://assets.devhints.io/previews/go.jpg?t=20201217214525" ],
+  "image": [ "https://assets.devhints.io/previews/go.jpg?t=20201228083030" ],
   "description": "The one-page guide to Go: usage, examples, links, snippets, and more."
 }
 </script>
@@ -257,6 +257,24 @@ msg = "Hello"
 <pre><code class="language-go">msg := "Hello"
 </code></pre>
 
+<h4 id="multiple-variable-declarations">Multiple variable declarations</h4>
+
+<pre><code class="language-go">var c, python, java bool
+</code></pre>
+
+<pre><code class="language-go">var c, python, java = true, false, "no!"
+</code></pre>
+
+<pre><code class="language-go">c, python, java := true, false, "no!"
+</code></pre>
+
+<pre><code class="language-go">var (
+	ToBe   bool       = false
+	MaxInt uint64     = 1&lt;&lt;64 - 1
+	z      complex128 = cmplx.Sqrt(-5 + 12i)
+)
+</code></pre>
+
 <h3 id="constants">Constants</h3>
 
 <pre><code class="language-go">const Phi = 1.618
@@ -293,6 +311,30 @@ num := byte('a')  // byte (alias for uint8)
 
 <pre><code class="language-go">var u uint = 7        // uint (unsigned)
 var p float32 = 22.7  // 32-bit float
+</code></pre>
+
+<h3 id="zero-values">Zero values</h3>
+
+<p>Variables declared without an explicit initial value are given their <em>zero</em> value.</p>
+
+<p>The zero value is:</p>
+
+<ul>
+  <li><code>0</code> for numeric types,</li>
+  <li><code>false</code> for the boolean type, and</li>
+  <li><code>""</code> (the empty string) for strings.</li>
+</ul>
+
+<h4 id="example">Example</h4>
+
+<pre><code class="language-go">var i int
+var f float64
+var b bool
+var s string
+fmt.Printf("%v %v %v %q\n", i, f, b, s)
+</code></pre>
+
+<pre><code>0 0 false ""
 </code></pre>
 
 <h3 id="arrays">Arrays</h3>
@@ -387,10 +429,50 @@ u := uint(i)
 
 <p>See: <a href="https://github.com/golang/go/wiki/Switch">Switch</a></p>
 
+<h3 id="switch-with-no-condition">Switch with no condition</h3>
+
+<p>Switch without a condition is the same as <code>switch true</code>.</p>
+
+<p>This construct can be a clean way to write long if-then-else chains.</p>
+
+<pre><code class="language-go">t := time.Now()
+switch {
+case t.Hour() &lt; 12:
+	fmt.Println("Good morning!")
+case t.Hour() &lt; 17:
+	fmt.Println("Good afternoon.")
+default:
+	fmt.Println("Good evening.")
+}
+</code></pre>
+
 <h3 id="for-loop">For loop</h3>
 
 <pre><code class="language-go">for count := 0; count &lt;= 10; count++ {
   fmt.Println("My counter is at", count)
+}
+</code></pre>
+
+<p>The init and post statements are optional:</p>
+
+<pre><code class="language-go">count := 0
+for ; count &lt;= 10; {
+  fmt.Println("My counter is at", count)
+}
+</code></pre>
+
+<p>The <code>while</code> statement for go:</p>
+
+<pre><code class="language-go">count := 0
+for count &lt;= 10 {
+  fmt.Println("My counter is at", count)
+}
+</code></pre>
+
+<p>Loops forever:</p>
+
+<pre><code class="language-go">for {
+  fmt.Println("This will not gonna end...")
 }
 </code></pre>
 
@@ -999,7 +1081,7 @@ function n(n,t,e){n.addEventListener?n.addEventListener(t,e):n.attachEvent("on"+
 },{}],"eoMl":[function(require,module,exports) {
 "use strict";var e=u(require("./wrapify")),d=u(require("dom101/add-class")),t=u(require("dom101/on"));function u(e){return e&&e.__esModule?e:{default:e}}var a,o=document.querySelector("[data-js-main-body]");function r(){a||((0,d.default)(document.documentElement,"LoadDone"),a=!0)}o&&((0,e.default)(o),(0,d.default)(o,"-wrapified")),(0,t.default)(window,"load",r),setTimeout(r,5e3);
 },{"./wrapify":"hE9p","dom101/add-class":"G20n","dom101/on":"DJ2P"}]},{},["eoMl"], null)</script>
-<script src='./assets/packed/app.js?t=20201217214525'></script>
+<script src='./assets/packed/app.js?t=20201228083030'></script>
 <script src='https://cdn.jsdelivr.net/npm/prismjs@1.6.0/components/prism-go.min.js'></script><script src='https://cdn.jsdelivr.net/npm/prismjs@1.6.0/components/prism-bash.min.js'></script>
 
 
