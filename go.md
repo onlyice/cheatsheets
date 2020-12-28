@@ -60,6 +60,28 @@ msg = "Hello"
 msg := "Hello"
 ```
 
+#### Multiple variable declarations
+
+```go
+var c, python, java bool
+```
+
+```go
+var c, python, java = true, false, "no!"
+```
+
+```go
+c, python, java := true, false, "no!"
+```
+
+```go
+var (
+	ToBe   bool       = false
+	MaxInt uint64     = 1<<64 - 1
+	z      complex128 = cmplx.Sqrt(-5 + 12i)
+)
+```
+
 ### Constants
 
 ```go
@@ -104,6 +126,31 @@ var u uint = 7        // uint (unsigned)
 var p float32 = 22.7  // 32-bit float
 ```
 
+### Zero values
+
+Variables declared without an explicit initial value are given their *zero* value.
+
+The zero value is:
+
+* `0` for numeric types,
+* `false` for the boolean type, and
+* `""` (the empty string) for strings.
+
+
+#### Example
+
+```go
+var i int
+var f float64
+var b bool
+var s string
+fmt.Printf("%v %v %v %q\n", i, f, b, s)
+```
+
+```
+0 0 false ""
+```
+
 ### Arrays
 
 ```go
@@ -112,6 +159,8 @@ numbers := [...]int{0, 0, 0, 0, 0}
 ```
 
 Arrays have a fixed size.
+
+TODO
 
 ### Slices
 
@@ -212,11 +261,55 @@ switch day {
 
 See: [Switch](https://github.com/golang/go/wiki/Switch)
 
+### Switch with no condition
+
+Switch without a condition is the same as `switch true`.
+
+This construct can be a clean way to write long if-then-else chains.
+
+```go
+t := time.Now()
+switch {
+case t.Hour() < 12:
+	fmt.Println("Good morning!")
+case t.Hour() < 17:
+	fmt.Println("Good afternoon.")
+default:
+	fmt.Println("Good evening.")
+}
+```
+
 ### For loop
 
 ```go
 for count := 0; count <= 10; count++ {
   fmt.Println("My counter is at", count)
+}
+```
+
+The init and post statements are optional:
+
+```go
+count := 0
+for ; count <= 10; {
+  fmt.Println("My counter is at", count)
+}
+```
+
+The `while` statement for go:
+
+```go
+count := 0
+for count <= 10 {
+  fmt.Println("My counter is at", count)
+}
+```
+
+Loops forever:
+
+```go
+for {
+  fmt.Println("This will not gonna end...")
 }
 ```
 

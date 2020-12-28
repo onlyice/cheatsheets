@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    build: 
+      context: .
+      # I've pass the http_proxy envvar to the container.
+      # It's a proxy exposed by the host.
+      network: host
+    volumes:
+      - .:/app
+      - rubygems:/usr/local/bundle
+      - ./node_modules:/app/node_modules
+      - yarn_cache:/root/.cache/yarn
+    # ports:
+      # - '4001:4001'
+      # - '35729:35729'
+    command: >
+      bash -c 'yarn; bundle; env PORT=4001 HOST=0.0.0.0 yarn run dev'
+    network_mode: host
+      
+volumes:
+  rubygems:
+  node_modules:
+  yarn_cache:

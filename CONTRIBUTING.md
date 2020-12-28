@@ -1,5 +1,11 @@
 # Developer notes
 
+## 说明
+
+本地运行时，使用下面所述的 docker-compose 方式。但是由于 build 镜像及拉 Ruby、npm 包过程需要使用翻墙代理来加速，Docker 需要做额外的配置（参考 [这里][docker-set-proxy-envvar]），本项目的 docker-compose 配置也需要做修改。我复制了一份 `docker-compose.local.yml`，使得容器中可以访问宿主机的翻墙代理 127.0.0.1:8001。因此本地运行时，下面教程中的 `docker-compose` 命令都需要加上额外的参数 `-f docker-compose.local.yml`。
+
+[docker-set-proxy-envvar]: https://wiki.zhiheng.io/#Docker%3A%20Set%20Proxy%20for%20Container%20to%20Access%20Proxy%20from%20Host
+
 ## Gitpod
 
 This repository supports contribution using [gitpod](https://gitpod.io) which is online IDE using [Theia](https://github.com/eclipse-theia/theia).
