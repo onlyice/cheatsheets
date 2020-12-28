@@ -160,8 +160,6 @@ numbers := [...]int{0, 0, 0, 0, 0}
 
 Arrays have a fixed size.
 
-TODO
-
 ### Slices
 
 ```go
